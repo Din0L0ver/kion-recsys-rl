@@ -1,0 +1,32 @@
+{
+  "source_rows": 5476251,
+  "source_users": 962179,
+  "source_items": 15706,
+  "date_min": "2021-03-13",
+  "date_max": "2021-08-22",
+  "train_end": "2021-07-25",
+  "val_end": "2021-08-01",
+  "test_start": "2021-08-09",
+  "test_end": "2021-08-15",
+  "imputation_watch_median_train": 39.0,
+  "missing_watch_rows": 828,
+  "vocab_items": 11201,
+  "raw_examples": {
+    "train": 2869741,
+    "reward_train": 2604449,
+    "val": 291076,
+    "test": 291361
+  },
+  "sampled_examples": {
+    "train": 200000,
+    "reward_train": 200000,
+    "val": 3000,
+    "test": 3000
+  },
+  "eval_item_coverage": {
+    "val": 0.9858661672012436,
+    "test": 0.8985523783677095
+  },
+  "same_day_policy": "a target sees interactions from strictly earlier dates only",
+  "reward_censoring_policy": "RM train matures by train_end; validation matures before test_start; test has full 7d follow-up"
+}

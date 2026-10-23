@@ -1,0 +1,943 @@
+{
+  "seed": 43,
+  "rl_seed": 143,
+  "config": {
+    "data_seed": 42,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "max_train": 200000,
+    "max_eval": 3000,
+    "epochs": 2,
+    "steps": 100,
+    "batch_size": 128,
+    "d_model": 64,
+    "n_layers": 2,
+    "n_heads": 4,
+    "dropout": 0.1,
+    "max_len": 32,
+    "rl_dropout": false
+  },
+  "specs": [
+    {
+      "name": "completion_kl0.1",
+      "reward": "completion",
+      "kl_coef": 0.1,
+      "steps": 100,
+      "learning_rate": 8e-05,
+      "anchor_coef": 0.05
+    },
+    {
+      "name": "completion_kl5",
+      "reward": "completion",
+      "kl_coef": 5.0,
+      "steps": 100,
+      "learning_rate": 8e-05,
+      "anchor_coef": 0.05
+    },
+    {
+      "name": "balanced_kl0.1",
+      "reward": "balanced",
+      "kl_coef": 0.1,
+      "steps": 100,
+      "learning_rate": 8e-05,
+      "anchor_coef": 0.05
+    },
+    {
+      "name": "balanced_kl5",
+      "reward": "balanced",
+      "kl_coef": 5.0,
+      "steps": 100,
+      "learning_rate": 8e-05,
+      "anchor_coef": 0.05
+    }
+  ],
+  "policy_metrics": {
+    "baseline": {
+      "n": 3000,
+      "raw_recall@10": 0.14166666666666666,
+      "raw_ndcg@10": 0.08178729367256164,
+      "raw_map@10": 0.0632353185415268,
+      "history_repeat_rate@10": 0.16176666666666667,
+      "catalog_coverage@10": 0.02589054548701009,
+      "top1_max_share": 0.27566666666666667,
+      "predicted_watch@10": 0.5578739034016927,
+      "predicted_return@10": 0.658343657430013,
+      "predicted_mixed_reward@10": 0.5096988850911458
+    },
+    "completion_kl0.1": {
+      "n": 3000,
+      "raw_recall@10": 0.132,
+      "raw_ndcg@10": 0.06429588850339253,
+      "raw_map@10": 0.04337949812412262,
+      "history_repeat_rate@10": 0.1456,
+      "catalog_coverage@10": 0.010802606910097313,
+      "top1_max_share": 0.72,
+      "predicted_watch@10": 0.6340858622233073,
+      "predicted_return@10": 0.6624785095214843,
+      "predicted_mixed_reward@10": 0.5623419789632161
+    },
+    "completion_kl5": {
+      "n": 3000,
+      "raw_recall@10": 0.142,
+      "raw_ndcg@10": 0.08114341537157695,
+      "raw_map@10": 0.0624556888739268,
+      "history_repeat_rate@10": 0.16393333333333332,
+      "catalog_coverage@10": 0.02392643513971967,
+      "top1_max_share": 0.305,
+      "predicted_watch@10": 0.6006653594970703,
+      "predicted_return@10": 0.6613733235677083,
+      "predicted_mixed_reward@10": 0.5378331909179688
+    },
+    "balanced_kl0.1": {
+      "n": 3000,
+      "raw_recall@10": 0.05,
+      "raw_ndcg@10": 0.027746373971303303,
+      "raw_map@10": 0.020944841623306273,
+      "history_repeat_rate@10": 0.031966666666666664,
+      "catalog_coverage@10": 0.02017676993125614,
+      "top1_max_share": 0.2886666666666667,
+      "predicted_watch@10": 0.658167529296875,
+      "predicted_return@10": 0.704512851969401,
+      "predicted_mixed_reward@10": 0.6295022959391277
+    },
+    "balanced_kl5": {
+      "n": 3000,
+      "raw_recall@10": 0.14266666666666666,
+      "raw_ndcg@10": 0.0816526963710785,
+      "raw_map@10": 0.06290277997652689,
+      "history_repeat_rate@10": 0.1588,
+      "catalog_coverage@10": 0.025711990000892776,
+      "top1_max_share": 0.25533333333333336,
+      "predicted_watch@10": 0.5927435048421223,
+      "predicted_return@10": 0.6619465657552084,
+      "predicted_mixed_reward@10": 0.5344670216878256
+    }
+  },
+  "reward_model_metrics": {
+    "val": {
+      "n": 3000,
+      "watch_mae": 0.3400663137435913,
+      "watch_rmse": 0.383076936006546,
+      "constant_watch_mae": 0.3761330544948578,
+      "constant_watch_rmse": 0.40387627482414246,
+      "watch_pearson": 0.32779393720713196,
+      "completion_auc_80pct": 0.66717780624884,
+      "return_auc_7d": 0.6459694410640312,
+      "return_brier": 0.21317645907402039,
+      "constant_return_brier": 0.22599925100803375,
+      "actual_watch_mean": 0.4390699863433838,
+      "predicted_watch_mean": 0.5258797407150269,
+      "actual_return_rate": 0.6549999713897705,
+      "predicted_return_mean": 0.6721137762069702
+    },
+    "test": {
+      "n": 3000,
+      "watch_mae": 0.3458006978034973,
+      "watch_rmse": 0.38852789998054504,
+      "constant_watch_mae": 0.37636181712150574,
+      "constant_watch_rmse": 0.4051860272884369,
+      "watch_pearson": 0.31431317101417006,
+      "completion_auc_80pct": 0.6693647907809354,
+      "return_auc_7d": 0.6778500754384972,
+      "return_brier": 0.20306921005249023,
+      "constant_return_brier": 0.22219735383987427,
+      "actual_watch_mean": 0.4167666733264923,
+      "predicted_watch_mean": 0.5329842567443848,
+      "actual_return_rate": 0.6676666736602783,
+      "predicted_return_mean": 0.6837748289108276
+    }
+  },
+  "training": {
+    "sft": [
+      {
+        "epoch": 1,
+        "train_loss": 7.173317844696045,
+        "val_loss": 7.2893600870768225,
+        "selected": true
+      },
+      {
+        "epoch": 2,
+        "train_loss": 6.81032069519043,
+        "val_loss": 7.158386657714844,
+        "selected": true
+      }
+    ],
+    "reward_model": [
+      {
+        "epoch": 1,
+        "train_loss": 0.859694633693695,
+        "val_loss": 0.8844200083414714,
+        "selected": true
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.8299514095687867,
+        "val_loss": 0.9008597730000814,
+        "selected": false
+      }
+    ],
+    "rl": {
+      "completion_kl0.1": [
+        {
+          "step": 1,
+          "reward": 0.5024581551551819,
+          "predicted_watch": 0.5024581551551819,
+          "predicted_return": 0.6560462713241577,
+          "repeat_rate": 0.0703125,
+          "popularity": 0.7075918912887573,
+          "kl": 0.0,
+          "anchor_loss": 6.528810501098633
+        },
+        {
+          "step": 10,
+          "reward": 0.5195915699005127,
+          "predicted_watch": 0.5195915699005127,
+          "predicted_return": 0.639997124671936,
+          "repeat_rate": 0.0234375,
+          "popularity": 0.6788831949234009,
+          "kl": 0.014760146848857403,
+          "anchor_loss": 6.585003852844238
+        },
+        {
+          "step": 20,
+          "reward": 0.5446795225143433,
+          "predicted_watch": 0.5446795225143433,
+          "predicted_return": 0.660344660282135,
+          "repeat_rate": 0.0234375,
+          "popularity": 0.7037678360939026,
+          "kl": 0.05432227998971939,
+          "anchor_loss": 6.76114559173584
+        },
+        {
+          "step": 30,
+          "reward": 0.5634817481040955,
+          "predicted_watch": 0.5634817481040955,
+          "predicted_return": 0.6417752504348755,
+          "repeat_rate": 0.078125,
+          "popularity": 0.7307494878768921,
+          "kl": 0.12604285776615143,
+          "anchor_loss": 6.560979843139648
+        },
+        {
+          "step": 40,
+          "reward": 0.5813345909118652,
+          "predicted_watch": 0.5813345909118652,
+          "predicted_return": 0.6180512309074402,
+          "repeat_rate": 0.0546875,
+          "popularity": 0.7628729343414307,
+          "kl": 0.270371675491333,
+          "anchor_loss": 6.526189804077148
+        },
+        {
+          "step": 50,
+          "reward": 0.5871695280075073,
+          "predicted_watch": 0.5871695280075073,
+          "predicted_return": 0.6338976621627808,
+          "repeat_rate": 0.0625,
+          "popularity": 0.7602695822715759,
+          "kl": 0.4854125678539276,
+          "anchor_loss": 7.164403438568115
+        },
+        {
+          "step": 60,
+          "reward": 0.6118481159210205,
+          "predicted_watch": 0.6118481159210205,
+          "predicted_return": 0.664404034614563,
+          "repeat_rate": 0.0859375,
+          "popularity": 0.7724416851997375,
+          "kl": 0.7164995670318604,
+          "anchor_loss": 7.123098373413086
+        },
+        {
+          "step": 70,
+          "reward": 0.6372175216674805,
+          "predicted_watch": 0.6372175216674805,
+          "predicted_return": 0.6256338953971863,
+          "repeat_rate": 0.109375,
+          "popularity": 0.8553164005279541,
+          "kl": 1.1172802448272705,
+          "anchor_loss": 7.363034248352051
+        },
+        {
+          "step": 80,
+          "reward": 0.6518694162368774,
+          "predicted_watch": 0.6518694162368774,
+          "predicted_return": 0.6455461978912354,
+          "repeat_rate": 0.1015625,
+          "popularity": 0.8632220029830933,
+          "kl": 1.4088795185089111,
+          "anchor_loss": 7.925874710083008
+        },
+        {
+          "step": 90,
+          "reward": 0.6568698883056641,
+          "predicted_watch": 0.6568698883056641,
+          "predicted_return": 0.6417331695556641,
+          "repeat_rate": 0.078125,
+          "popularity": 0.8677424788475037,
+          "kl": 1.7872138023376465,
+          "anchor_loss": 7.937841892242432
+        },
+        {
+          "step": 100,
+          "reward": 0.6848464012145996,
+          "predicted_watch": 0.6848464012145996,
+          "predicted_return": 0.651758074760437,
+          "repeat_rate": 0.125,
+          "popularity": 0.8909556865692139,
+          "kl": 2.288875102996826,
+          "anchor_loss": 8.715959548950195
+        }
+      ],
+      "completion_kl5": [
+        {
+          "step": 1,
+          "reward": 0.5024581551551819,
+          "predicted_watch": 0.5024581551551819,
+          "predicted_return": 0.6560462713241577,
+          "repeat_rate": 0.0703125,
+          "popularity": 0.7075918912887573,
+          "kl": 0.0,
+          "anchor_loss": 6.528810501098633
+        },
+        {
+          "step": 10,
+          "reward": 0.5147635340690613,
+          "predicted_watch": 0.5147635340690613,
+          "predicted_return": 0.640262246131897,
+          "repeat_rate": 0.0234375,
+          "popularity": 0.6766337156295776,
+          "kl": 0.005995830520987511,
+          "anchor_loss": 6.580540657043457
+        },
+        {
+          "step": 20,
+          "reward": 0.53748619556427,
+          "predicted_watch": 0.53748619556427,
+          "predicted_return": 0.6606257557868958,
+          "repeat_rate": 0.015625,
+          "popularity": 0.696033775806427,
+          "kl": 0.006077507510781288,
+          "anchor_loss": 6.702634811401367
+        },
+        {
+          "step": 30,
+          "reward": 0.5402891635894775,
+          "predicted_watch": 0.5402891635894775,
+          "predicted_return": 0.6492859721183777,
+          "repeat_rate": 0.0625,
+          "popularity": 0.686732292175293,
+          "kl": 0.006584024056792259,
+          "anchor_loss": 6.459939956665039
+        },
+        {
+          "step": 40,
+          "reward": 0.5473061203956604,
+          "predicted_watch": 0.5473061203956604,
+          "predicted_return": 0.6315413117408752,
+          "repeat_rate": 0.0390625,
+          "popularity": 0.7028994560241699,
+          "kl": 0.009827174246311188,
+          "anchor_loss": 6.355655670166016
+        },
+        {
+          "step": 50,
+          "reward": 0.5314483642578125,
+          "predicted_watch": 0.5314483642578125,
+          "predicted_return": 0.654665470123291,
+          "repeat_rate": 0.03125,
+          "popularity": 0.6718552708625793,
+          "kl": 0.010205885395407677,
+          "anchor_loss": 6.739553451538086
+        },
+        {
+          "step": 60,
+          "reward": 0.541431188583374,
+          "predicted_watch": 0.541431188583374,
+          "predicted_return": 0.6772466897964478,
+          "repeat_rate": 0.046875,
+          "popularity": 0.6460204124450684,
+          "kl": 0.009119467809796333,
+          "anchor_loss": 6.589232444763184
+        },
+        {
+          "step": 70,
+          "reward": 0.5367720127105713,
+          "predicted_watch": 0.5367720127105713,
+          "predicted_return": 0.65619295835495,
+          "repeat_rate": 0.0625,
+          "popularity": 0.687456488609314,
+          "kl": 0.011619307100772858,
+          "anchor_loss": 6.402786731719971
+        },
+        {
+          "step": 80,
+          "reward": 0.5436899662017822,
+          "predicted_watch": 0.5436899662017822,
+          "predicted_return": 0.6625884771347046,
+          "repeat_rate": 0.046875,
+          "popularity": 0.654551088809967,
+          "kl": 0.01007181964814663,
+          "anchor_loss": 6.519655227661133
+        },
+        {
+          "step": 90,
+          "reward": 0.5360736846923828,
+          "predicted_watch": 0.5360736846923828,
+          "predicted_return": 0.6575092673301697,
+          "repeat_rate": 0.0625,
+          "popularity": 0.6853586435317993,
+          "kl": 0.011986954137682915,
+          "anchor_loss": 6.381495475769043
+        },
+        {
+          "step": 100,
+          "reward": 0.5463890433311462,
+          "predicted_watch": 0.5463890433311462,
+          "predicted_return": 0.6626152992248535,
+          "repeat_rate": 0.0625,
+          "popularity": 0.6704058647155762,
+          "kl": 0.012576490640640259,
+          "anchor_loss": 6.521751880645752
+        }
+      ],
+      "balanced_kl0.1": [
+        {
+          "step": 1,
+          "reward": 0.5057876706123352,
+          "predicted_watch": 0.5024581551551819,
+          "predicted_return": 0.6560462713241577,
+          "repeat_rate": 0.0703125,
+          "popularity": 0.7075918912887573,
+          "kl": 0.0,
+          "anchor_loss": 6.528810501098633
+        },
+        {
+          "step": 10,
+          "reward": 0.5235990285873413,
+          "predicted_watch": 0.5122964382171631,
+          "predicted_return": 0.6408088207244873,
+          "repeat_rate": 0.015625,
+          "popularity": 0.6647084951400757,
+          "kl": 0.015410786494612694,
+          "anchor_loss": 6.564455986022949
+        },
+        {
+          "step": 20,
+          "reward": 0.554107129573822,
+          "predicted_watch": 0.5519248247146606,
+          "predicted_return": 0.6642519235610962,
+          "repeat_rate": 0.015625,
+          "popularity": 0.6758193373680115,
+          "kl": 0.05774586647748947,
+          "anchor_loss": 6.766427993774414
+        },
+        {
+          "step": 30,
+          "reward": 0.5544658899307251,
+          "predicted_watch": 0.5501483678817749,
+          "predicted_return": 0.6567392945289612,
+          "repeat_rate": 0.015625,
+          "popularity": 0.6419036388397217,
+          "kl": 0.124943308532238,
+          "anchor_loss": 6.557734489440918
+        },
+        {
+          "step": 40,
+          "reward": 0.5536874532699585,
+          "predicted_watch": 0.5560848116874695,
+          "predicted_return": 0.643901526927948,
+          "repeat_rate": 0.015625,
+          "popularity": 0.6561805605888367,
+          "kl": 0.2176017016172409,
+          "anchor_loss": 6.473280906677246
+        },
+        {
+          "step": 50,
+          "reward": 0.5518189668655396,
+          "predicted_watch": 0.5435938835144043,
+          "predicted_return": 0.6596906185150146,
+          "repeat_rate": 0.015625,
+          "popularity": 0.6331468820571899,
+          "kl": 0.33757123351097107,
+          "anchor_loss": 6.911672592163086
+        },
+        {
+          "step": 60,
+          "reward": 0.5679884552955627,
+          "predicted_watch": 0.5609928369522095,
+          "predicted_return": 0.6838712692260742,
+          "repeat_rate": 0.03125,
+          "popularity": 0.6137471199035645,
+          "kl": 0.44451242685317993,
+          "anchor_loss": 6.966193199157715
+        },
+        {
+          "step": 70,
+          "reward": 0.5701959133148193,
+          "predicted_watch": 0.5771094560623169,
+          "predicted_return": 0.6646029353141785,
+          "repeat_rate": 0.03125,
+          "popularity": 0.6482589244842529,
+          "kl": 0.6186052560806274,
+          "anchor_loss": 7.011453628540039
+        },
+        {
+          "step": 80,
+          "reward": 0.5809962153434753,
+          "predicted_watch": 0.5721341371536255,
+          "predicted_return": 0.6805540323257446,
+          "repeat_rate": 0.0078125,
+          "popularity": 0.5946699976921082,
+          "kl": 0.7484712600708008,
+          "anchor_loss": 7.3505964279174805
+        },
+        {
+          "step": 90,
+          "reward": 0.5844016075134277,
+          "predicted_watch": 0.5911636352539062,
+          "predicted_return": 0.6744750142097473,
+          "repeat_rate": 0.0234375,
+          "popularity": 0.6378600001335144,
+          "kl": 0.93736732006073,
+          "anchor_loss": 7.227956771850586
+        },
+        {
+          "step": 100,
+          "reward": 0.5883431434631348,
+          "predicted_watch": 0.593943178653717,
+          "predicted_return": 0.6830936670303345,
+          "repeat_rate": 0.03125,
+          "popularity": 0.622433066368103,
+          "kl": 1.2150005102157593,
+          "anchor_loss": 7.739418029785156
+        }
+      ],
+      "balanced_kl5": [
+        {
+          "step": 1,
+          "reward": 0.5057876706123352,
+          "predicted_watch": 0.5024581551551819,
+          "predicted_return": 0.6560462713241577,
+          "repeat_rate": 0.0703125,
+          "popularity": 0.7075918912887573,
+          "kl": 0.0,
+          "anchor_loss": 6.528810501098633
+        },
+        {
+          "step": 10,
+          "reward": 0.5228478312492371,
+          "predicted_watch": 0.512120246887207,
+          "predicted_return": 0.6411305665969849,
+          "repeat_rate": 0.015625,
+          "popularity": 0.6718793511390686,
+          "kl": 0.004273656755685806,
+          "anchor_loss": 6.570616722106934
+        },
+        {
+          "step": 20,
+          "reward": 0.5418485403060913,
+          "predicted_watch": 0.5374830961227417,
+          "predicted_return": 0.6607620716094971,
+          "repeat_rate": 0.015625,
+          "popularity": 0.6958096623420715,
+          "kl": 0.004459240473806858,
+          "anchor_loss": 6.701995849609375
+        },
+        {
+          "step": 30,
+          "reward": 0.5379152894020081,
+          "predicted_watch": 0.5388258695602417,
+          "predicted_return": 0.6524975299835205,
+          "repeat_rate": 0.0390625,
+          "popularity": 0.6763339638710022,
+          "kl": 0.005544937215745449,
+          "anchor_loss": 6.461143970489502
+        },
+        {
+          "step": 40,
+          "reward": 0.5385825634002686,
+          "predicted_watch": 0.5482432246208191,
+          "predicted_return": 0.6327906847000122,
+          "repeat_rate": 0.03125,
+          "popularity": 0.6972314119338989,
+          "kl": 0.006186901591718197,
+          "anchor_loss": 6.346502304077148
+        },
+        {
+          "step": 50,
+          "reward": 0.5358931422233582,
+          "predicted_watch": 0.5291150212287903,
+          "predicted_return": 0.6564525961875916,
+          "repeat_rate": 0.03125,
+          "popularity": 0.6589473485946655,
+          "kl": 0.007162883412092924,
+          "anchor_loss": 6.737348556518555
+        },
+        {
+          "step": 60,
+          "reward": 0.5470696687698364,
+          "predicted_watch": 0.5397740602493286,
+          "predicted_return": 0.6776336431503296,
+          "repeat_rate": 0.046875,
+          "popularity": 0.6381695866584778,
+          "kl": 0.00724061531946063,
+          "anchor_loss": 6.59223747253418
+        },
+        {
+          "step": 70,
+          "reward": 0.5299268364906311,
+          "predicted_watch": 0.5326368808746338,
+          "predicted_return": 0.6565344333648682,
+          "repeat_rate": 0.0625,
+          "popularity": 0.6792079210281372,
+          "kl": 0.008380433544516563,
+          "anchor_loss": 6.410861968994141
+        },
+        {
+          "step": 80,
+          "reward": 0.5427423715591431,
+          "predicted_watch": 0.5395262241363525,
+          "predicted_return": 0.6635854244232178,
+          "repeat_rate": 0.046875,
+          "popularity": 0.6447098851203918,
+          "kl": 0.008238634094595909,
+          "anchor_loss": 6.529508113861084
+        },
+        {
+          "step": 90,
+          "reward": 0.5369969606399536,
+          "predicted_watch": 0.5321235656738281,
+          "predicted_return": 0.658867359161377,
+          "repeat_rate": 0.03125,
+          "popularity": 0.6735012531280518,
+          "kl": 0.008962134830653667,
+          "anchor_loss": 6.391412258148193
+        },
+        {
+          "step": 100,
+          "reward": 0.5386347770690918,
+          "predicted_watch": 0.5408729314804077,
+          "predicted_return": 0.6630715131759644,
+          "repeat_rate": 0.0625,
+          "popularity": 0.6620051860809326,
+          "kl": 0.008870209567248821,
+          "anchor_loss": 6.524928092956543
+        }
+      ]
+    }
+  },
+  "rollouts": [
+    {
+      "step": 1,
+      "predicted_watch": 0.6055173277854919,
+      "predicted_return": 0.6234416365623474,
+      "objective_reward": 0.6055173277854919,
+      "original_history_repeat_rate": 0.19200000166893005,
+      "within_rollout_repeat_rate": 0.0,
+      "mean_popularity": 0.9164499640464783,
+      "unique_items": 35,
+      "top1_max_share": 0.27,
+      "model": "baseline"
+    },
+    {
+      "step": 2,
+      "predicted_watch": 0.5821590423583984,
+      "predicted_return": 0.6242616176605225,
+      "objective_reward": 0.5821590423583984,
+      "original_history_repeat_rate": 0.21799999475479126,
+      "within_rollout_repeat_rate": 0.515999972820282,
+      "mean_popularity": 0.9051103591918945,
+      "unique_items": 34,
+      "top1_max_share": 0.294,
+      "model": "baseline"
+    },
+    {
+      "step": 3,
+      "predicted_watch": 0.5454145669937134,
+      "predicted_return": 0.6313326358795166,
+      "objective_reward": 0.5454145669937134,
+      "original_history_repeat_rate": 0.20800000429153442,
+      "within_rollout_repeat_rate": 0.6439999938011169,
+      "mean_popularity": 0.8858526945114136,
+      "unique_items": 32,
+      "top1_max_share": 0.24,
+      "model": "baseline"
+    },
+    {
+      "step": 4,
+      "predicted_watch": 0.5165517926216125,
+      "predicted_return": 0.6329345703125,
+      "objective_reward": 0.5165517926216125,
+      "original_history_repeat_rate": 0.18400000035762787,
+      "within_rollout_repeat_rate": 0.7680000066757202,
+      "mean_popularity": 0.8725302219390869,
+      "unique_items": 30,
+      "top1_max_share": 0.202,
+      "model": "baseline"
+    },
+    {
+      "step": 5,
+      "predicted_watch": 0.47383472323417664,
+      "predicted_return": 0.6335763931274414,
+      "objective_reward": 0.47383472323417664,
+      "original_history_repeat_rate": 0.17399999499320984,
+      "within_rollout_repeat_rate": 0.8180000185966492,
+      "mean_popularity": 0.8579445481300354,
+      "unique_items": 28,
+      "top1_max_share": 0.272,
+      "model": "baseline"
+    },
+    {
+      "step": 1,
+      "predicted_watch": 0.7381796836853027,
+      "predicted_return": 0.6735241413116455,
+      "objective_reward": 0.7381796836853027,
+      "original_history_repeat_rate": 0.18000000715255737,
+      "within_rollout_repeat_rate": 0.0,
+      "mean_popularity": 0.9250317215919495,
+      "unique_items": 8,
+      "top1_max_share": 0.718,
+      "model": "completion_kl0.1"
+    },
+    {
+      "step": 2,
+      "predicted_watch": 0.768473744392395,
+      "predicted_return": 0.7008733749389648,
+      "objective_reward": 0.768473744392395,
+      "original_history_repeat_rate": 0.18000000715255737,
+      "within_rollout_repeat_rate": 0.7459999918937683,
+      "mean_popularity": 0.912039577960968,
+      "unique_items": 7,
+      "top1_max_share": 0.972,
+      "model": "completion_kl0.1"
+    },
+    {
+      "step": 3,
+      "predicted_watch": 0.7796569466590881,
+      "predicted_return": 0.711085319519043,
+      "objective_reward": 0.7796569466590881,
+      "original_history_repeat_rate": 0.18000000715255737,
+      "within_rollout_repeat_rate": 0.9819999933242798,
+      "mean_popularity": 0.911668598651886,
+      "unique_items": 5,
+      "top1_max_share": 0.99,
+      "model": "completion_kl0.1"
+    },
+    {
+      "step": 4,
+      "predicted_watch": 0.7856748104095459,
+      "predicted_return": 0.7184963226318359,
+      "objective_reward": 0.7856748104095459,
+      "original_history_repeat_rate": 0.18000000715255737,
+      "within_rollout_repeat_rate": 0.9980000257492065,
+      "mean_popularity": 0.9116225242614746,
+      "unique_items": 4,
+      "top1_max_share": 0.99,
+      "model": "completion_kl0.1"
+    },
+    {
+      "step": 5,
+      "predicted_watch": 0.7901885509490967,
+      "predicted_return": 0.7231086492538452,
+      "objective_reward": 0.7901885509490967,
+      "original_history_repeat_rate": 0.18000000715255737,
+      "within_rollout_repeat_rate": 1.0,
+      "mean_popularity": 0.9116225242614746,
+      "unique_items": 4,
+      "top1_max_share": 0.99,
+      "model": "completion_kl0.1"
+    },
+    {
+      "step": 1,
+      "predicted_watch": 0.6437462568283081,
+      "predicted_return": 0.6301234364509583,
+      "objective_reward": 0.6437462568283081,
+      "original_history_repeat_rate": 0.20200000703334808,
+      "within_rollout_repeat_rate": 0.0,
+      "mean_popularity": 0.9190658926963806,
+      "unique_items": 32,
+      "top1_max_share": 0.302,
+      "model": "completion_kl5"
+    },
+    {
+      "step": 2,
+      "predicted_watch": 0.6489166021347046,
+      "predicted_return": 0.6371132135391235,
+      "objective_reward": 0.6489166021347046,
+      "original_history_repeat_rate": 0.2240000069141388,
+      "within_rollout_repeat_rate": 0.5239999890327454,
+      "mean_popularity": 0.9127871990203857,
+      "unique_items": 32,
+      "top1_max_share": 0.324,
+      "model": "completion_kl5"
+    },
+    {
+      "step": 3,
+      "predicted_watch": 0.664259672164917,
+      "predicted_return": 0.6513751149177551,
+      "objective_reward": 0.664259672164917,
+      "original_history_repeat_rate": 0.2160000056028366,
+      "within_rollout_repeat_rate": 0.6439999938011169,
+      "mean_popularity": 0.8999165296554565,
+      "unique_items": 32,
+      "top1_max_share": 0.252,
+      "model": "completion_kl5"
+    },
+    {
+      "step": 4,
+      "predicted_watch": 0.6770796775817871,
+      "predicted_return": 0.6679139137268066,
+      "objective_reward": 0.6770796775817871,
+      "original_history_repeat_rate": 0.20999999344348907,
+      "within_rollout_repeat_rate": 0.7739999890327454,
+      "mean_popularity": 0.8926889896392822,
+      "unique_items": 30,
+      "top1_max_share": 0.354,
+      "model": "completion_kl5"
+    },
+    {
+      "step": 5,
+      "predicted_watch": 0.6851913928985596,
+      "predicted_return": 0.6796976327896118,
+      "objective_reward": 0.6851913928985596,
+      "original_history_repeat_rate": 0.20000000298023224,
+      "within_rollout_repeat_rate": 0.8859999775886536,
+      "mean_popularity": 0.8859837651252747,
+      "unique_items": 29,
+      "top1_max_share": 0.44,
+      "model": "completion_kl5"
+    },
+    {
+      "step": 1,
+      "predicted_watch": 0.683136522769928,
+      "predicted_return": 0.7134035229682922,
+      "objective_reward": 0.6466318368911743,
+      "original_history_repeat_rate": 0.029999999329447746,
+      "within_rollout_repeat_rate": 0.0,
+      "mean_popularity": 0.6975778937339783,
+      "unique_items": 39,
+      "top1_max_share": 0.278,
+      "model": "balanced_kl0.1"
+    },
+    {
+      "step": 2,
+      "predicted_watch": 0.7126058340072632,
+      "predicted_return": 0.7520725131034851,
+      "objective_reward": 0.5498172640800476,
+      "original_history_repeat_rate": 0.029999999329447746,
+      "within_rollout_repeat_rate": 0.6679999828338623,
+      "mean_popularity": 0.6779460310935974,
+      "unique_items": 28,
+      "top1_max_share": 0.482,
+      "model": "balanced_kl0.1"
+    },
+    {
+      "step": 3,
+      "predicted_watch": 0.7298055291175842,
+      "predicted_return": 0.7767280340194702,
+      "objective_reward": 0.5389947891235352,
+      "original_history_repeat_rate": 0.017999999225139618,
+      "within_rollout_repeat_rate": 0.8159999847412109,
+      "mean_popularity": 0.6636078953742981,
+      "unique_items": 25,
+      "top1_max_share": 0.586,
+      "model": "balanced_kl0.1"
+    },
+    {
+      "step": 4,
+      "predicted_watch": 0.7403298616409302,
+      "predicted_return": 0.7947157025337219,
+      "objective_reward": 0.5389002561569214,
+      "original_history_repeat_rate": 0.014000000432133675,
+      "within_rollout_repeat_rate": 0.878000020980835,
+      "mean_popularity": 0.6539299488067627,
+      "unique_items": 23,
+      "top1_max_share": 0.662,
+      "model": "balanced_kl0.1"
+    },
+    {
+      "step": 5,
+      "predicted_watch": 0.7489150166511536,
+      "predicted_return": 0.8067294955253601,
+      "objective_reward": 0.54142165184021,
+      "original_history_repeat_rate": 0.009999999776482582,
+      "within_rollout_repeat_rate": 0.9100000262260437,
+      "mean_popularity": 0.650555431842804,
+      "unique_items": 23,
+      "top1_max_share": 0.72,
+      "model": "balanced_kl0.1"
+    },
+    {
+      "step": 1,
+      "predicted_watch": 0.6413873434066772,
+      "predicted_return": 0.6320111751556396,
+      "objective_reward": 0.5478295087814331,
+      "original_history_repeat_rate": 0.18000000715255737,
+      "within_rollout_repeat_rate": 0.0,
+      "mean_popularity": 0.9107499122619629,
+      "unique_items": 33,
+      "top1_max_share": 0.246,
+      "model": "balanced_kl5"
+    },
+    {
+      "step": 2,
+      "predicted_watch": 0.6424577832221985,
+      "predicted_return": 0.6411275267601013,
+      "objective_reward": 0.4748026132583618,
+      "original_history_repeat_rate": 0.20999999344348907,
+      "within_rollout_repeat_rate": 0.47200000286102295,
+      "mean_popularity": 0.9027678370475769,
+      "unique_items": 32,
+      "top1_max_share": 0.262,
+      "model": "balanced_kl5"
+    },
+    {
+      "step": 3,
+      "predicted_watch": 0.6473075151443481,
+      "predicted_return": 0.6549339890480042,
+      "objective_reward": 0.45332708954811096,
+      "original_history_repeat_rate": 0.23399999737739563,
+      "within_rollout_repeat_rate": 0.6320000290870667,
+      "mean_popularity": 0.8875625729560852,
+      "unique_items": 30,
+      "top1_max_share": 0.246,
+      "model": "balanced_kl5"
+    },
+    {
+      "step": 4,
+      "predicted_watch": 0.6573824286460876,
+      "predicted_return": 0.6711720824241638,
+      "objective_reward": 0.4500870108604431,
+      "original_history_repeat_rate": 0.20999999344348907,
+      "within_rollout_repeat_rate": 0.7620000243186951,
+      "mean_popularity": 0.878045916557312,
+      "unique_items": 30,
+      "top1_max_share": 0.366,
+      "model": "balanced_kl5"
+    },
+    {
+      "step": 5,
+      "predicted_watch": 0.6520934700965881,
+      "predicted_return": 0.6775537729263306,
+      "objective_reward": 0.4256892502307892,
+      "original_history_repeat_rate": 0.20000000298023224,
+      "within_rollout_repeat_rate": 0.8859999775886536,
+      "mean_popularity": 0.8715992569923401,
+      "unique_items": 28,
+      "top1_max_share": 0.406,
+      "model": "balanced_kl5"
+    }
+  ],
+  "elapsed_seconds": 212.79236962500727,
+  "runtime": {
+    "device": "mps",
+    "python": "3.12.5",
+    "torch": "2.14.1",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6"
+  }
+}

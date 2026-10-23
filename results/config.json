@@ -1,0 +1,19 @@
+{
+  "data_seed": 42,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "max_train": 200000,
+  "max_eval": 3000,
+  "epochs": 2,
+  "steps": 100,
+  "batch_size": 128,
+  "d_model": 64,
+  "n_layers": 2,
+  "n_heads": 4,
+  "dropout": 0.1,
+  "max_len": 32,
+  "rl_dropout": false
+}
